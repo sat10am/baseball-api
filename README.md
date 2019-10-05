@@ -1,38 +1,26 @@
 # baseball-api
 
-```http
+## TODO
 
-HTTP/2.0 GET /baseball?numbers=1234
+- [ ] GET /baseball?number=1234 API 를 만드세요
+- [ ] API 는 다음의 정해진 응답을 하도록 처리하세요
+  ```http
+  HTTP/1.1 200 OK
+  Content-Length: 77
+  Content-Type: application/json
+  Date: Sat, 05 Oct 2019 09:23:17 GMT
+  Server: WSGIServer/0.2 CPython/3.7.3
+  X-Frame-Options: SAMEORIGIN
 
-# NOTE: 보통의 정답 맞추기 요청. 사용자의 세션, IP 등 자유로운 식별자를 체크해서 시도 횟수를 저장한다
-# NOTE: 예를 들어 꼼수로, QueryString 에서 사용자 이름을 받아서 해도 좋음
-
-RESPONSE 200 OK application/json
-
-{
-  "JUDGEMENT": "1B 3S",
-  "TRIED_NUMBER": "1234",
-  "CORRECT": true or false,
-  "TRY_COUNT": 1
-}
-
-# NOTE: 20번 이상 정답을 맞추려고 하는 경우 아래 Response 를 반환하고, 새로운 번호를 생성한다
-
-RESPONSE 400 BAD_REQUEST application/json
-{
-  "JUDGEMENT": "4B",
-  "TRIED_NUMBER": "1234",
-  "CORRECT": false,
-  "TRY_COUNT": 21
-}
-
-# NOTE: 정답을 맞춘 경우, 아래 Response 를 반환하고, 새로운 번호를 생성한다
-
-RESPONSE 201 CREATED application/json
-{
-  "JUDGEMENT": "4S",
-  "TRIED_NUMBER": "1234",
-  "CORRECT": true,
-  "TRY_COUNT": 5
-}
-```
+  {
+    "CORRECT": false,  // 판정 결과
+    "JUDGEMENT": "1B",  // 플레이어가 시도한 번호
+    "TRIED_NUMBER": "1234",  // 정답 여부 - 맞으면 true, 틀리면 false
+    "TRY_COUNT": 5  // 플레이어의 이번 게임 시도 횟수
+  }
+  ```
+- [ ] 게임은 20번을 초과하여 플레이 할 수 없습니다
+  -  다만 **20번이 넘어가면, 새 게임을 만드세요** (BAD_REQUEST 사용 안 함)
+- [ ] `Response`의 `Content-Type` 은 `application-json` 으로 해주세요
+- [ ] 플레이어의 session, cookie, remode_addr, query parameter 등 다양한 방법을 사용해, 게임 
+기록을 유지해주세요
