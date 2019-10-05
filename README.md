@@ -1,6 +1,8 @@
 # baseball-api
 
-## TODO
+API 로 숫자야구를 할 수 있게 게임을 만들어 봐요 🐶
+
+## Requirements
 
 - [ ] GET /baseball?number=1234 API 를 만드세요
 - [ ] API 는 다음의 정해진 응답을 하도록 처리하세요
